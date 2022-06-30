@@ -9,10 +9,12 @@ tasks:
   - init: |
       npm ci 
       npm run init
+      gp sync-done dependencies
     name: root dependencies
     command: npm run init
 
   - init: |
+      gp sync-await dependencies 
       cd packages/spectrum
       npm ci
       npm run build
