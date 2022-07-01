@@ -276,7 +276,7 @@ export const SpectrumArrayModalControl = React.memo(
                     schema={schema}
                     uischema={uischema}
                     uischemas={uischemas}
-                  ></SpectrumArrayModalItem>
+                  />
                   {uischema.options?.showSortButtons ? (
                     <Flex
                       direction={
