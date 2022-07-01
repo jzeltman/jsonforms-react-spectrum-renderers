@@ -1,23 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ListBox } from '@adobe/react-spectrum';
 import { SpectrumArrayModalItems } from './SpectrumArrayModalItems';
-import { modalItemParentType } from '../../../types';
+import {
+  ItemsWithLabelsArrayObject,
+  ListBoxUseStateSelectionTypes,
+  Selection,
+} from '../../../types';
 
-export const SpectrumArrayModalListBox: React.FC<modalItemParentType> = ({
+export const SpectrumArrayModalListBox: React.FC<ItemsWithLabelsArrayObject> = ({
   items,
-  selectedIndex,
-  setSelectedIndex,
 }) => {
-  const handleListBoxChange = (i: Selection) => {
-    setSelectedIndex(i);
+  const [selected, setSelected]: ListBoxUseStateSelectionTypes = useState(
+    new Set([0])
+  );
+  const handleSelectionChange = (keys: Selection) => {
+    setSelected(keys);
+    return;
   };
+
   return (
     <ListBox
       aria-label='Select'
       items={items}
       margin='size-100'
-      onSelectionChange={(keys: Selection): any => handleListBoxChange(keys)}
-      selectedKeys={String(selectedIndex)}
+      onSelectionChange={handleSelectionChange}
+      selectedKeys={selected}
       selectionMode='single'
       width='calc(100% - size-200)'
       maxHeight='size-2400'

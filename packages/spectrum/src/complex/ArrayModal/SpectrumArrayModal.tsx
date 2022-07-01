@@ -7,18 +7,18 @@ import {
   Heading,
 } from '@adobe/react-spectrum';
 import React, { useState } from 'react';
+import { arrayWithLabels } from '../../../types';
 import { SpectrumArrayModalListBox } from './SpectrumArrayModalListBox';
 import { SpectrumArrayModalPicker } from './SpectrumArrayModalPicker';
 
 export const SpectrumArrayModal = ({
   oneOfRenderInfos,
-  usePickerInsteadOfListBox,
+  usePickerInsteadOfListBox: isPicker,
 }: {
-  oneOfRenderInfos: any;
+  oneOfRenderInfos: arrayWithLabels;
   usePickerInsteadOfListBox: boolean;
 }) => {
   const [open, setOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleClose = () => {
     setOpen(!open);
@@ -35,18 +35,10 @@ export const SpectrumArrayModal = ({
           <div style={{ gridColumn: '1 / -1' }}>
             <Heading margin='size-100'>Add a new item</Heading>
             <Divider />
-            {usePickerInsteadOfListBox ? (
-              <SpectrumArrayModalPicker
-                selectedIndex={selectedIndex}
-                setSelectedIndex={setSelectedIndex}
-                items={oneOfRenderInfos}
-              />
+            {isPicker ? (
+              <SpectrumArrayModalPicker items={oneOfRenderInfos} />
             ) : (
-              <SpectrumArrayModalListBox
-                items={oneOfRenderInfos}
-                selectedIndex={selectedIndex}
-                setSelectedIndex={setSelectedIndex}
-              />
+              <SpectrumArrayModalListBox items={oneOfRenderInfos} />
             )}
           </div>
           <ButtonGroup>

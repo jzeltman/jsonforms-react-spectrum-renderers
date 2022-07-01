@@ -1,4 +1,6 @@
-import React from 'react';
+import { Key } from 'react';
+
+export type Selection = Set<Key>;
 
 export type arrayWithLabels = [
   {
@@ -6,8 +8,16 @@ export type arrayWithLabels = [
   }
 ];
 
-export type modalItemParentType = {
+export type ItemsWithLabelsArrayObject = {
   items: arrayWithLabels;
-  selectedIndex: number;
-  setSelectedIndex: React.Dispatch<React.SetStateAction<number>>;
 };
+
+export type PickerUseStateSelectionTypes = [
+  any,
+  React.Dispatch<React.SetStateAction<any>>
+];
+
+export type ListBoxUseStateSelectionTypes = [
+  any,
+  React.Dispatch<React.SetStateAction<Set<any>>>
+];
